@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8000"
+const BASE = import.meta.env.VITE_BACKEND_URL;
 
 export async function loginUser(email, password) {
   const form = new URLSearchParams();
