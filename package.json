@@ -2,6 +2,7 @@
   "name": "govconnect-frontend",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "homepage": "https://Pranshu-iiitd.github.io/GovConnect",
   "scripts": {
     "dev": "vite",
