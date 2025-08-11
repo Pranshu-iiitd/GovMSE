@@ -35,7 +35,6 @@ export default function Assistant() {
     }
 
     let resp = [];
-
     if (scoreInt === 100) {
       resp = [
         "🎉 Outstanding — You’ve attained full compliance!",
@@ -47,7 +46,7 @@ export default function Assistant() {
     } else if (scoreInt >= 80) {
       resp = [
         "Great score! Some documents might still be missing or nearing expiry.",
-        "✔️ Double‑check validity of Trade License and Pollution NOC.",
+        "✔️ Double-check validity of Trade License and Pollution NOC.",
         "🧾 Submit business ITRs and bank statements promptly to support financial inclusion.",
         "🔗 Link GST and Udyam via DSC for authentication efficiency.",
         "🏭 Connect with Delhi MSME centers in Naraina/Bawana for renewal support."
@@ -70,11 +69,11 @@ export default function Assistant() {
       ];
     } else {
       resp = [
-        "⚠️ Low score — you’re in critical non‑compliance territory.",
-        "📌 Start by registering Udyam to get your 16‑digit URN.",
+        "⚠️ Low score — you’re in critical non-compliance territory.",
+        "📌 Start by registering Udyam to get your 16-digit URN.",
         "🧾 Apply for PAN and GST immediately — these are mandatory for any formal transaction.",
-        "🧯 Ensure pollution and trade licenses within 1‑3 days via Delhi eDistrict.",
-        "📞 Dial Delhi Small-Scale Enterprise Helpline (1800‑123‑456) for free support."
+        "🧯 Ensure pollution and trade licenses within 1-3 days via Delhi eDistrict.",
+        "📞 Dial Delhi Small-Scale Enterprise Helpline (1800-123-456) for free support."
       ];
     }
 
@@ -90,7 +89,8 @@ export default function Assistant() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#4169E1] via-[#b3e5c9] to-[#e8fff3]">
-      <div className="flex-grow p-6 flex items-center justify-center">
+      <div className="flex-grow p-6 flex flex-col items-center justify-center gap-10">
+        {/* Compliance Guidance Tool */}
         <div className="max-w-2xl w-full bg-white shadow-lg rounded-xl p-8">
           <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-4 text-center">
             GovMSE AI Assistant 🤖
@@ -163,6 +163,17 @@ export default function Assistant() {
               </button>
             </div>
           )}
+        </div>
+
+        {/* Chatbase AI iframe */}
+        <div className="w-full max-w-4xl h-[700px] shadow-lg border rounded-lg overflow-hidden">
+          <iframe
+            src="https://www.chatbase.co/chatbot-iframe/eN-yBmvj2aUu_7jdNh0kx"
+            width="100%"
+            style={{ height: "100%", minHeight: "700px" }}
+            frameBorder="0"
+            title="GovMSE+ AI Chat"
+          ></iframe>
         </div>
       </div>
 
