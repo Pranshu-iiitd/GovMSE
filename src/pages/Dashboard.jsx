@@ -10,28 +10,68 @@ export default function Dashboard() {
           Welcome back, {firstName} 👋
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-[#4169E1]">
-            <h3 className="text-lg font-semibold text-[#4169E1] mb-2">Feature: GovScore</h3>
-            <p className="text-gray-700">
-              Know your compliance health out of 100 and improve it with government-ready suggestions.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-[#43CD80]">
-            <h3 className="text-lg font-semibold text-[#43CD80] mb-2">Feature: AI Assistant</h3>
-            <p className="text-gray-700">
-              Ask AI how to improve your MSME’s legal standing and get instant step-by-step guidance.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-yellow-400">
-            <h3 className="text-lg font-semibold text-yellow-500 mb-2">Feature: Vault</h3>
-            <p className="text-gray-700">
-              Download your auto-generated compliance report (PDF) for banks, tenders, and verification.
-            </p>
+        {/* GST Registration Card */}
+        <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#4169E1] mb-6">
+          <h2 className="text-xl font-bold text-[#2a2f45] mb-4">
+            GST Registration <span className="text-sm text-gray-500">(ID: 8923-A)</span>
+          </h2>
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-green-100 text-green-600 mr-3">✔</span>
+              <div>
+                <p className="font-semibold">Submitted</p>
+                <p className="text-sm text-gray-500">28 Jul 2025</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-[#4169E1] text-[#4169E1] mr-3">○</span>
+              <div>
+                <p className="font-semibold">Under Review</p>
+                <p className="text-sm text-gray-500">Est. 04 Aug 2025</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-400 text-gray-400 mr-3">○</span>
+              <div>
+                <p className="font-semibold">Approved</p>
+                <p className="text-sm text-gray-500">Est. 10 Aug 2025</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#4169E1]">
+        {/* Shop & Establishment License Card */}
+        <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#43CD80]">
+          <h2 className="text-xl font-bold text-[#2a2f45] mb-4">
+            Shop & Establishment License <span className="text-sm text-gray-500">(ID: 7155-B)</span>
+          </h2>
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-green-100 text-green-600 mr-3">✔</span>
+              <div>
+                <p className="font-semibold">Submitted</p>
+                <p className="text-sm text-gray-500">28 Jul 2025</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-[#43CD80] text-[#43CD80] mr-3">○</span>
+              <div>
+                <p className="font-semibold">Under Review</p>
+                <p className="text-sm text-gray-500">Est. 04 Aug 2025</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-400 text-gray-400 mr-3">○</span>
+              <div>
+                <p className="font-semibold">Approved</p>
+                <p className="text-sm text-gray-500">Est. 10 Aug 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Section */}
+        <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-400 mt-6">
           <h2 className="text-xl font-bold mb-4 text-[#2a2f45]">What Can You Do Today?</h2>
           <ul className="list-disc pl-5 text-gray-700 space-y-2">
             <li>🎯 Check your GovScore to identify missing documents.</li>
@@ -42,7 +82,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Footer - inline in same file */}
+      {/* Footer */}
       <footer className="bg-gradient-to-r from-[#4169E1] to-[#43CD80] text-white text-sm py-6 mt-16">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div>&copy; {new Date().getFullYear()} GovMSE. All rights reserved.</div>
