@@ -1,98 +1,72 @@
+import { Lock } from "lucide-react";
 import { useState } from "react";
 
-export default function Assistant() {
-  const [startedCompliance, setStartedCompliance] = useState(false);
-  const [selectedDoc, setSelectedDoc] = useState("");
-  const [businessNumber, setBusinessNumber] = useState("");
+export default function ComplianceReportPro() {
+  const [isPro, setIsPro] = useState(false); // Change to true when user is Pro
 
-  const documents = [
-    "GST Certificate",
-    "UDYAM Certificate",
-    "LICENSE Certificate",
-    "PAN Certificate",
-    "MSME Certificate",
-    "TRADE Certificate",
-  ];
+  const startCompliance = () => {
+    if (!isPro) {
+      alert("🚫 Upgrade to Pro to unlock the Compliance Vault 🔐");
+      return;
+    }
+    // Run compliance logic here if Pro
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#4169E1] via-[#b3e5c9] to-[#e8fff3]">
-      <div className="flex-grow p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        {/* Left - AI Assistant (Always On) */}
-        <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col">
-          <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
-            GOVMSE+ AI 🤖
-          </h1>
-          <div className="w-full h-[600px] shadow-lg border rounded-lg overflow-hidden">
-            <iframe
-              src="https://www.chatbase.co/chatbot-iframe/eN-yBmvj2aUu_7jdNh0kx"
-              width="100%"
-              style={{ height: "100%", minHeight: "600px" }}
-              frameBorder="0"
-              title="GOVMSE+ AI Chat"
-            ></iframe>
+      <div className="flex-grow flex items-center justify-center px-6 py-12">
+        {!isPro ? (
+          // Upgrade Screen
+          <div className="max-w-3xl w-full bg-white shadow-xl rounded-2xl p-8 text-center">
+            <Lock size={80} className="text-yellow-400 mx-auto mb-6" />
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#2a2f45] mb-4">
+              Upgrade to <span className="text-yellow-500">Pro</span> to Unlock Your Compliance Vault 🔐
+            </h1>
+            <p className="text-lg text-gray-700 mb-6 max-w-xl mx-auto">
+              Access your personalized, auto-generated compliance PDF — complete with your GovScore, document checklist,
+              and official-ready layout. Perfect for funding, tenders, audits, or MSME schemes.
+            </p>
+
+            {/* Preview box */}
+            <div className="bg-blue-50 p-4 rounded-xl shadow mb-6 text-left text-sm text-gray-800 max-w-xl mx-auto">
+              <p className="font-semibold mb-2">📝 PDF Preview Includes:</p>
+              <ul className="list-disc ml-5 space-y-1">
+                <li>✅ MSME Name and Email</li>
+                <li>📊 Your GovScore + Document Status Summary</li>
+                <li>📎 Missing Document Suggestions</li>
+                <li>🔗 Useful links to Delhi eDistrict, Udyam portal, etc.</li>
+                <li>📄 Clean, minimal design in downloadable PDF format</li>
+              </ul>
+            </div>
+
+            {/* Price Card */}
+            <div className="bg-[#1e2a55] text-white rounded-xl p-6 mb-6 inline-block">
+              <p className="text-3xl font-bold">₹499<span className="text-lg font-normal">/month</span></p>
+              <p className="text-sm opacity-80">Billed Annually</p>
+            </div>
+
+            <button
+              onClick={() => alert("Redirecting to upgrade payment...")}
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 text-lg rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition"
+            >
+              Go Pro
+            </button>
           </div>
-        </div>
-
-        {/* Right - Compliance Report */}
-        <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col">
-          <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
-            Your Compliance Report 📄
-          </h1>
-
-          {!startedCompliance ? (
-            <div className="text-lg space-y-6 text-center flex-1 flex flex-col justify-center">
-              <p>🛡 Start your compliance check by selecting the document and entering your business details.</p>
-              <button
-                onClick={() => setStartedCompliance(true)}
-                className="bg-[#4169E1] text-white px-6 py-2 rounded hover:bg-blue-800 transition"
-              >
-                Start Compliance
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-4">
-              {/* Dropdown */}
-              <select
-                value={selectedDoc}
-                onChange={(e) => setSelectedDoc(e.target.value)}
-                className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-[#4169E1]"
-              >
-                <option value="">Select a Document</option>
-                {documents.map((doc) => (
-                  <option key={doc} value={doc}>
-                    {doc}
-                  </option>
-                ))}
-              </select>
-
-              {/* Business Number */}
-              <input
-                type="text"
-                placeholder="Enter Business Number"
-                value={businessNumber}
-                onChange={(e) => setBusinessNumber(e.target.value)}
-                className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-[#4169E1]"
-              />
-
-              {/* Button */}
-              <button
-                onClick={() =>
-                  alert(`Compliance Report:\nDocument: ${selectedDoc}\nBusiness Number: ${businessNumber}`)
-                }
-                className="bg-[#4169E1] text-white py-3 rounded-lg hover:bg-blue-800 transition"
-              >
-                Generate Compliance Report
-              </button>
-            </div>
-          )}
-        </div>
+        ) : (
+          // Compliance Form for Pro users
+          <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-3xl">
+            <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
+              Your Compliance Report 📄
+            </h1>
+            {/* Compliance form here */}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-[#4169E1] to-[#43CD80] text-white text-sm py-6">
+      <footer className="bg-gradient-to-r from-[#4169E1] to-[#43CD80] text-white text-sm py-6 mt-16">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>&copy; {new Date().getFullYear()} GOVMSE+. All rights reserved.</div>
+          <div>&copy; {new Date().getFullYear()} GovMSE. All rights reserved.</div>
           <div>
             <p>
               Contact us:{" "}
