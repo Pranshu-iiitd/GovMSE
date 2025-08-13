@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export default function Assistant() {
-  const [startedAI, setStartedAI] = useState(false);
   const [startedCompliance, setStartedCompliance] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState("");
   const [businessNumber, setBusinessNumber] = useState("");
@@ -19,33 +18,20 @@ export default function Assistant() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#4169E1] via-[#b3e5c9] to-[#e8fff3]">
       <div className="flex-grow p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        {/* Left - AI Assistant */}
+        {/* Left - AI Assistant (Always On) */}
         <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col">
           <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
             GOVMSE+ AI 🤖
           </h1>
-
-          {!startedAI ? (
-            <div className="text-lg space-y-6 text-center flex-1 flex flex-col justify-center">
-              <p>👋 Hi! I’m your AI assistant for MSME compliance and business guidance.</p>
-              <button
-                onClick={() => setStartedAI(true)}
-                className="bg-[#4169E1] text-white px-6 py-2 rounded hover:bg-blue-800 transition"
-              >
-                Start AI
-              </button>
-            </div>
-          ) : (
-            <div className="w-full h-[600px] shadow-lg border rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.chatbase.co/chatbot-iframe/eN-yBmvj2aUu_7jdNh0kx"
-                width="100%"
-                style={{ height: "100%", minHeight: "600px" }}
-                frameBorder="0"
-                title="GOVMSE+ AI Chat"
-              ></iframe>
-            </div>
-          )}
+          <div className="w-full h-[600px] shadow-lg border rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.chatbase.co/chatbot-iframe/eN-yBmvj2aUu_7jdNh0kx"
+              width="100%"
+              style={{ height: "100%", minHeight: "600px" }}
+              frameBorder="0"
+              title="GOVMSE+ AI Chat"
+            ></iframe>
+          </div>
         </div>
 
         {/* Right - Compliance Report */}
@@ -91,7 +77,9 @@ export default function Assistant() {
 
               {/* Button */}
               <button
-                onClick={() => alert(`Compliance Report:\nDocument: ${selectedDoc}\nBusiness Number: ${businessNumber}`)}
+                onClick={() =>
+                  alert(`Compliance Report:\nDocument: ${selectedDoc}\nBusiness Number: ${businessNumber}`)
+                }
                 className="bg-[#4169E1] text-white py-3 rounded-lg hover:bg-blue-800 transition"
               >
                 Generate Compliance Report
