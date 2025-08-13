@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 export default function Assistant() {
-  const [started, setStarted] = useState(false);
-  const [selectedDocs, setSelectedDocs] = useState([]);
+  const [startedAI, setStartedAI] = useState(false);
+  const [startedCompliance, setStartedCompliance] = useState(false);
+  const [selectedDoc, setSelectedDoc] = useState("");
+  const [businessNumber, setBusinessNumber] = useState("");
 
   const documents = [
     "GST Certificate",
@@ -13,28 +15,24 @@ export default function Assistant() {
     "TRADE Certificate",
   ];
 
-  const toggleDoc = (doc) => {
-    setSelectedDocs((prev) =>
-      prev.includes(doc) ? prev.filter((d) => d !== doc) : [...prev, doc]
-    );
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#4169E1] via-[#b3e5c9] to-[#e8fff3]">
       <div className="flex-grow p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+        
         {/* Left - AI Assistant */}
         <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col">
           <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
             GOVMSE+ AI 🤖
           </h1>
-          {!started ? (
+
+          {!startedAI ? (
             <div className="text-lg space-y-6 text-center flex-1 flex flex-col justify-center">
               <p>👋 Hi! I’m your AI assistant for MSME compliance and business guidance.</p>
               <button
-                onClick={() => setStarted(true)}
+                onClick={() => setStartedAI(true)}
                 className="bg-[#4169E1] text-white px-6 py-2 rounded hover:bg-blue-800 transition"
               >
-                Start Guidance
+                Start AI
               </button>
             </div>
           ) : (
@@ -51,35 +49,55 @@ export default function Assistant() {
         </div>
 
         {/* Right - Compliance Report */}
-        <div className="bg-white shadow-lg rounded-xl p-8">
+        <div className="bg-white shadow-lg rounded-xl p-8 flex flex-col">
           <h1 className="text-3xl font-extrabold text-[#2a2f45] mb-6 text-center">
-            Your Compliance Report
+            Your Compliance Report 📄
           </h1>
-          <p className="text-gray-600 mb-4 text-center">
-            Select the documents you have to generate your compliance PDF.
-          </p>
-          <div className="space-y-4">
-            {documents.map((doc) => (
-              <label
-                key={doc}
-                className="flex items-center space-x-3 border rounded-lg p-3 hover:bg-gray-50 cursor-pointer"
+
+          {!startedCompliance ? (
+            <div className="text-lg space-y-6 text-center flex-1 flex flex-col justify-center">
+              <p>🛡 Start your compliance check by selecting the document and entering your business details.</p>
+              <button
+                onClick={() => setStartedCompliance(true)}
+                className="bg-[#4169E1] text-white px-6 py-2 rounded hover:bg-blue-800 transition"
               >
-                <input
-                  type="checkbox"
-                  checked={selectedDocs.includes(doc)}
-                  onChange={() => toggleDoc(doc)}
-                  className="w-5 h-5 text-[#4169E1] focus:ring-[#4169E1]"
-                />
-                <span>{doc}</span>
-              </label>
-            ))}
-          </div>
-          <button
-            onClick={() => alert(`Generate PDF for: ${selectedDocs.join(", ")}`)}
-            className="mt-6 w-full bg-[#4169E1] text-white py-3 rounded-lg hover:bg-blue-800 transition"
-          >
-            Generate PDF
-          </button>
+                Start Compliance
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {/* Dropdown */}
+              <select
+                value={selectedDoc}
+                onChange={(e) => setSelectedDoc(e.target.value)}
+                className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-[#4169E1]"
+              >
+                <option value="">Select a Document</option>
+                {documents.map((doc) => (
+                  <option key={doc} value={doc}>
+                    {doc}
+                  </option>
+                ))}
+              </select>
+
+              {/* Business Number */}
+              <input
+                type="text"
+                placeholder="Enter Business Number"
+                value={businessNumber}
+                onChange={(e) => setBusinessNumber(e.target.value)}
+                className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-[#4169E1]"
+              />
+
+              {/* Button */}
+              <button
+                onClick={() => alert(`Compliance Report:\nDocument: ${selectedDoc}\nBusiness Number: ${businessNumber}`)}
+                className="bg-[#4169E1] text-white py-3 rounded-lg hover:bg-blue-800 transition"
+              >
+                Generate Compliance Report
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
